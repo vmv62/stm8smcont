@@ -1,5 +1,7 @@
 #include <iostm8s003f3.h>
 
+#define V_REF 3.3
+
 //Конфигурация портов жеткая, так как определены в железе.
 int ports_conf(){
   /*
@@ -25,4 +27,14 @@ int adc_conf(){
   /* Wake ADC from power down */
   ADC_CR1 |= MASK_ADC_CR1_ADON;
   return 0;
+}
+
+unsigned int ADC_read(){
+  unsigned int adcH, adcL;
+  ADC_CR1 |= MASK_ADC_CR1_ADON;
+  while (!(ADC_CSR & MASK_ADC_CSR_EOC));
+  adcL = ADC_DRL;
+  adcH = ADC_DRH;
+  ADC_CSR &= ~MASK_ADC_CSR_EOC; // Clear EOC flag
+  return (adcL | (adcH << 8));
 }
