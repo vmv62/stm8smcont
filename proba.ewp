@@ -1580,9 +1580,6 @@
   <file>
     <name>$PROJ_DIR$\main.c</name>
   </file>
-  <file>
-    <name>$PROJ_DIR$\stm8s003f3.h</name>
-  </file>
 </project>
 
 
