@@ -1,7 +1,7 @@
 #include <iostm8s003f3.h>
 
 //Конфигурация портов жеткая, так как определены в железе.
-int ports_config(){
+int ports_conf(){
   /*
     PA3 - управление светодиодом
     PC7 - выход №1, PC6 - выход №2, PC5 - выход №3, PC4 - выход №4
@@ -13,6 +13,16 @@ int ports_config(){
   PA_ODR = 0x08; //Высталяет РА3 в единицу (Высокий уровень).
   PC_CR1 = 0xF0; //Настройка РС4 - РС5 в режим тяни толкай, РС3 - вход с подтяжкой.
   PC_DDR = 0xF0; //Перевод портов РС4 - РС5 в режим выхода.
-  PB_CR = 0x30; //РВ4, РВ5 вход с подтяжкой.
+  PB_CR1 = 0x30; //РВ4, РВ5 вход с подтяжкой.
+  return 0;
+}
+
+int adc_conf(){
+  /* Configure ADC channel 4 (PD3)  */
+  ADC_CSR |= (1 << 3) | (1 << 4);
+  /* Right-align data */
+  ADC_CR2 |= MASK_ADC_CR2_ALIGN;
+  /* Wake ADC from power down */
+  ADC_CR1 |= MASK_ADC_CR1_ADON;
   return 0;
 }

@@ -6,43 +6,51 @@
   <configuration>
     <name>Debug</name>
     <outputs>
+      <file>$TOOLKIT_DIR$\inc\io_macros.h</file>
+      <file>$PROJ_DIR$\Debug\Obj\hardware.pbi</file>
+      <file>$PROJ_DIR$\Debug\Obj\hardware.o</file>
       <file>$PROJ_DIR$\Debug\Obj\proba.pbd</file>
+      <file>$TOOLKIT_DIR$\inc\iostm8s003f3.h</file>
       <file>$PROJ_DIR$\main.c</file>
-      <file>$TOOLKIT_DIR$\lib\dlstm8smn.a</file>
-      <file>$PROJ_DIR$\Debug\Obj\main.o</file>
       <file>$PROJ_DIR$\Debug\Exe\templproj.out</file>
       <file>$TOOLKIT_DIR$\lib\dbgstm8smd.a</file>
       <file>$PROJ_DIR$\Debug\Obj\main.pbi</file>
-      <file>$TOOLKIT_DIR$\config\lnkstm8s003f3.icf</file>
-      <file>$TOOLKIT_DIR$\doc\infocenter\index.ENU.html</file>
-      <file>$TOOLKIT_DIR$\inc\iostm8s003f3.h</file>
       <file>$PROJ_DIR$\stm8s003f3.h</file>
-      <file>$TOOLKIT_DIR$\inc\io_macros.h</file>
-      <file>$PROJ_DIR$\Debug\Obj\hardware.o</file>
-      <file>$PROJ_DIR$\Debug\Obj\hardware.pbi</file>
-      <file>$PROJ_DIR$\hardware.c</file>
+      <file>$TOOLKIT_DIR$\lib\dlstm8smn.a</file>
+      <file>$PROJ_DIR$\Debug\Obj\main.o</file>
       <file>$PROJ_DIR$\hardware.h</file>
+      <file>$TOOLKIT_DIR$\config\lnkstm8s003f3.icf</file>
+      <file>$PROJ_DIR$\hardware.c</file>
     </outputs>
+    <file>
+      <name>[ROOT_NODE]</name>
+      <outputs>
+        <tool>
+          <name>ILINK</name>
+          <file> 6</file>
+        </tool>
+      </outputs>
+    </file>
     <file>
       <name>$PROJ_DIR$\main.c</name>
       <outputs>
         <tool>
           <name>BICOMP</name>
-          <file> 6</file>
+          <file> 8</file>
         </tool>
         <tool>
           <name>ICCSTM8</name>
-          <file> 3</file>
+          <file> 11</file>
         </tool>
       </outputs>
       <inputs>
         <tool>
           <name>BICOMP</name>
-          <file> 15</file>
+          <file> 12</file>
         </tool>
         <tool>
           <name>ICCSTM8</name>
-          <file> 15</file>
+          <file> 12</file>
         </tool>
       </inputs>
     </file>
@@ -51,39 +59,30 @@
       <inputs>
         <tool>
           <name>ILINK</name>
-          <file> 7 12 3 2 5</file>
+          <file> 13 2 11 10 7</file>
         </tool>
       </inputs>
-    </file>
-    <file>
-      <name>[ROOT_NODE]</name>
-      <outputs>
-        <tool>
-          <name>ILINK</name>
-          <file> 4</file>
-        </tool>
-      </outputs>
     </file>
     <file>
       <name>$PROJ_DIR$\hardware.c</name>
       <outputs>
         <tool>
           <name>BICOMP</name>
-          <file> 13</file>
+          <file> 1</file>
         </tool>
         <tool>
           <name>ICCSTM8</name>
-          <file> 12</file>
+          <file> 2</file>
         </tool>
       </outputs>
       <inputs>
         <tool>
           <name>BICOMP</name>
-          <file> 9 11</file>
+          <file> 4 0</file>
         </tool>
         <tool>
           <name>ICCSTM8</name>
-          <file> 9 11</file>
+          <file> 4 0</file>
         </tool>
       </inputs>
     </file>

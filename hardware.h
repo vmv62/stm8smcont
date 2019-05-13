@@ -1,1 +1,2 @@
-int ports_config();
+int ports_conf();
+int adc_conf();
