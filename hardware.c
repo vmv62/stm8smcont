@@ -41,3 +41,6 @@ unsigned int ADC_read(){
   ADC_CSR &= ~MASK_ADC_CSR_EOC; // Clear EOC flag
   return (adcL | (adcH << 8));
 }
+void usart_init(int baud){
+  
+}
