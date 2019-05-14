@@ -21,10 +21,10 @@ int ports_conf(){
 
 int adc_conf(){
   /* Configure ADC channel 4 (PD3)  */
-  ADC_CSR = 0x36;
+  ADC_CSR = 0x38;
   //Отключение тригера шмидта
-  ADC_TDRH |= ((1 << 3) | (1 << 4));
-  ADC_TDRL |= ((1 << 3) | (1 << 4));
+  ADC_TDRH = 24;
+  ADC_TDRL = 24;
   /* Right-align data */
   ADC_CR2 |= MASK_ADC_CR2_ALIGN;
   /* Wake ADC from power down */

@@ -1,11 +1,11 @@
 #include "hardware.h"
 
+unsigned int adcv;
 int main( void )
 {
-  unsigned int ad_val;
   ports_conf();
   adc_conf();
   while(1){
-    ad_val = ADC_read();
+    adcv = ADC_read();
   }
 }
