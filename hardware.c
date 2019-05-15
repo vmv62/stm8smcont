@@ -42,5 +42,9 @@ unsigned int ADC_read(){
   return (adcL | (adcH << 8));
 }
 void usart_init(int baud){
-  
+  //Установка скорости обмена УАРТА
+  UART_BRR1 = ;
+  UART_BRR1 = ;
+  //Включение передатчика и приемника
+  UART_CR2 |= (MASK_UART_CR2_TEN | MASK_UART_CR2_REN)
 }
