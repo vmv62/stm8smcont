@@ -1569,6 +1569,12 @@
     </settings>
   </configuration>
   <file>
+    <name>$PROJ_DIR$\clk.c</name>
+  </file>
+  <file>
+    <name>$PROJ_DIR$\clk.h</name>
+  </file>
+  <file>
     <name>$PROJ_DIR$\hardware.c</name>
   </file>
   <file>
@@ -1579,6 +1585,12 @@
   </file>
   <file>
     <name>$PROJ_DIR$\main.c</name>
+  </file>
+  <file>
+    <name>$PROJ_DIR$\usart.c</name>
+  </file>
+  <file>
+    <name>$PROJ_DIR$\usart.h</name>
   </file>
 </project>
 

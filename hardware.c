@@ -16,6 +16,7 @@ int ports_conf(){
   PC_CR1 = 0xF0; //Настройка РС4 - РС5 в режим тяни толкай, РС3 - вход с подтяжкой.
   PC_DDR = 0xF0; //Перевод портов РС4 - РС5 в режим выхода.
   PB_CR1 = 0x30; //РВ4, РВ5 вход с подтяжкой.
+  
   return 0;
 }
 
@@ -41,13 +42,4 @@ unsigned int ADC_read(){
   ADC_CSR &= ~MASK_ADC_CSR_EOC; // Clear EOC flag
   return (adcL | (adcH << 8));
 }
-void usart_init(int baud){
-  //Установка скорости обмена УАРТА на 9600 для частоты процессора 4000000
-/*  UART_BRR1 = 0x1A;
-  UART_BRR1 = 0x00; */
-//Установка скорости обмена УАРТА на 9600 для частоты процессора 16000000
-  UART_BRR1 = 0x68;
-  UART_BRR1 = 0x03;
-  //Включение передатчика и приемника
-  UART_CR2 |= (MASK_UART_CR2_TEN | MASK_UART_CR2_REN);
-}
+
