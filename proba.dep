@@ -2,7 +2,7 @@
 
 <project>
   <fileVersion>2</fileVersion>
-  <fileChecksum>1842125998</fileChecksum>
+  <fileChecksum>3883357368</fileChecksum>
   <configuration>
     <name>Debug</name>
     <outputs>
@@ -28,6 +28,14 @@
       <file>$PROJ_DIR$\clk.h</file>
       <file>$PROJ_DIR$\Debug\Obj\clk.pbi</file>
       <file>$PROJ_DIR$\Debug\Obj\usart.o</file>
+      <file>$PROJ_DIR$\adc.h</file>
+      <file>$PROJ_DIR$\adc.c</file>
+      <file>$PROJ_DIR$\ioport.h</file>
+      <file>$PROJ_DIR$\Debug\Obj\ioport.o</file>
+      <file>$PROJ_DIR$\Debug\Obj\ioport.pbi</file>
+      <file>$PROJ_DIR$\ioport.c</file>
+      <file>$PROJ_DIR$\Debug\Obj\adc.pbi</file>
+      <file>$PROJ_DIR$\Debug\Obj\adc.o</file>
     </outputs>
     <file>
       <name>[ROOT_NODE]</name>
@@ -76,11 +84,11 @@
       <inputs>
         <tool>
           <name>BICOMP</name>
-          <file> 4 15 19</file>
+          <file> 24 15 19 22</file>
         </tool>
         <tool>
           <name>ICCSTM8</name>
-          <file> 4 15 19</file>
+          <file> 24 15 19 22</file>
         </tool>
       </inputs>
     </file>
@@ -89,7 +97,7 @@
       <inputs>
         <tool>
           <name>ILINK</name>
-          <file> 0 16 2 5 21 13 11</file>
+          <file> 0 16 25 5 21 13 11</file>
         </tool>
       </inputs>
     </file>
@@ -139,6 +147,52 @@
         </tool>
       </inputs>
     </file>
+    <file>
+      <name>$PROJ_DIR$\adc.c</name>
+      <outputs>
+        <tool>
+          <name>BICOMP</name>
+          <file> 28</file>
+        </tool>
+      </outputs>
+      <inputs>
+        <tool>
+          <name>BICOMP</name>
+          <file> 22</file>
+        </tool>
+        <tool>
+          <name>ICCSTM8</name>
+          <file> 22</file>
+        </tool>
+      </inputs>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\ioport.c</name>
+      <outputs>
+        <tool>
+          <name>BICOMP</name>
+          <file> 26</file>
+        </tool>
+        <tool>
+          <name>ICCSTM8</name>
+          <file> 25</file>
+        </tool>
+      </outputs>
+      <inputs>
+        <tool>
+          <name>BICOMP</name>
+          <file> 1 6</file>
+        </tool>
+        <tool>
+          <name>ICCSTM8</name>
+          <file> 1 6</file>
+        </tool>
+      </inputs>
+    </file>
+    <forcedrebuild>
+      <name>[MULTI_TOOL]</name>
+      <tool>ILINK</tool>
+    </forcedrebuild>
   </configuration>
   <configuration>
     <name>Release</name>

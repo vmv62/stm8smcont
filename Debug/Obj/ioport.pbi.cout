@@ -1,4 +1,4 @@
-"C:\Users\vmv\Documents\STM8_progs\stm8smcont\clk.c"
+"C:\Users\vmv\Documents\STM8_progs\stm8smcont\ioport.c"
 -std=c99
 -ferror-limit=100
 -I
@@ -214,7 +214,7 @@ C:\Program Files (x86)\IAR Systems\Embedded Workbench 6.5\stm8\inc\c
 -D__HAS_LOCATED_WITH_INIT__=1
 -D__IAR_COMPILERBASE__=593160
 -D__DATE__="May 15 2019"
--D__TIME__="22:41:46"
+-D__TIME__="23:00:49"
 -D__STDC__=1
 -D__STDC_VERSION__=199901L
 -D__STDC_HOSTED__=1

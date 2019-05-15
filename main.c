@@ -1,6 +1,7 @@
-#include "hardware.h"
+#include "ioport.h"
 #include "usart.h"
 #include "clk.h"
+#include "adc.h"
 
 unsigned int adcv;
 

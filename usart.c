@@ -2,6 +2,8 @@
 #include "usart.h"
 
 void usart_init(int baud){
+  int div;
+  div = XTALL/baud;
   //Установка скорости обмена УАРТА на 9600 для частоты процессора 4000000
 /*  UART_BRR1 = 0x1A;
   UART_BRR1 = 0x00; */

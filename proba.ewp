@@ -1569,16 +1569,22 @@
     </settings>
   </configuration>
   <file>
+    <name>$PROJ_DIR$\adc.c</name>
+  </file>
+  <file>
+    <name>$PROJ_DIR$\adc.h</name>
+  </file>
+  <file>
     <name>$PROJ_DIR$\clk.c</name>
   </file>
   <file>
     <name>$PROJ_DIR$\clk.h</name>
   </file>
   <file>
-    <name>$PROJ_DIR$\hardware.c</name>
+    <name>$PROJ_DIR$\ioport.c</name>
   </file>
   <file>
-    <name>$PROJ_DIR$\hardware.h</name>
+    <name>$PROJ_DIR$\ioport.h</name>
   </file>
   <file>
     <name>$EW_DIR$\stm8\inc\iostm8s003f3.h</name>
