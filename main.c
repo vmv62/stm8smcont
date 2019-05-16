@@ -9,7 +9,7 @@ int main( void )
 {
   ports_conf();
   adc_conf();
-  if(enable_hse()){
+  if(swclksrc(HSE)){
     usart_init(9600);
   }
   while(1){
