@@ -2,4 +2,4 @@
 #define CLK_ST_ERR      0
 #define HSE             0xB4
 
-int enable_hse(int clk_src);
+int swclksrc(int clk_src);
