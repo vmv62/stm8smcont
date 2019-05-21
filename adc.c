@@ -4,7 +4,7 @@
 
 int adc_conf(){
   /* Configure ADC channel 4 (PD3)  */
-  ADC_CSR = 0x38;
+//  ADC_CSR = 0x38;
   //Отключение тригера шмидта
   ADC_TDRH = 24;
   ADC_TDRL = 24;
@@ -23,4 +23,9 @@ unsigned int ADC_read(){
   adcH = ADC_DRH; //ADC_DBxRH
   ADC_CSR &= ~MASK_ADC_CSR_EOC; // Clear EOC flag
   return (adcL | (adcH << 8));
+}
+
+#pragma vector=ADC1_EOC_vector
+__interrupt void ADC_interrupt(void){
+  ;;
 }
