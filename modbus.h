@@ -54,40 +54,8 @@ enum{
 
 };
 
-//uint8_t BUFFER[256];
-
-//Наполнение таблицы. часть касаемая содержания регистров хранения.
-
-//Таблица регистров контроллера
-//typedef struct{
-//	uint16_t COILS;						//выхода - читаем командой 01, пишем командой 05
-//	uint16_t INPUTS;					//дискретные входа, читаем командой 02
-//	uint16_t HLD_REG[HLD_REG_COUNT];			//регистры хранения, читаем через комманду 04, пишем командой 06
-//	uint32_t INP_REG[INP_REG_COUNT]; //только читаем через команду 04
-//}RegsTable_TypeDef;
-
-//Структура сообщения протокола.
-typedef struct{
-	uint8_t slave_addres;
-	uint8_t	command;
-}PDU_QueryHead_TypeDef;
-
-typedef struct{
-	PDU_QueryHead_TypeDef head;
-	uint16_t reg_addr;
-	uint16_t reg_count;
-	uint16_t crc;
-}PDU_Query1_4_TypeDef;
-
-typedef struct{
-	PDU_QueryHead_TypeDef head;
-	uint16_t reg_addr;
-	uint16_t reg_data;
-	uint16_t crc;
-}PDU_Query6_TypeDef;
 
 int mb_parse_pdu(unsigned char *buff, int len);
-//int crc16(unsigned char* data_p, unsigned char length);
 unsigned int CRC16(unsigned char *buf, int len);
-void error_handler(char err_numb);
+void error_handler(unsigned char *buff, char err_numb);
 

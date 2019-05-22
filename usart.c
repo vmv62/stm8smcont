@@ -14,7 +14,7 @@ void usart_init(int baud){
 //  PD_ODR |= (1 << 4);
 }
 
-void usart_tx(char byte){
+void usart_tx(unsigned char byte){
   PD_ODR |= (1 << 4);
   //Если передача не завершена, то ждем
   while(!(UART1_SR && UART1_SR_TXE));;
@@ -27,7 +27,7 @@ int usart_rx(void){
   return UART1_DR;
 }
 
-int usart_tx_buff(char *buf, int len){
+int usart_tx_buff(unsigned char *buf, int len){
   int pntr = 0;
   while(pntr < len){
     usart_tx(buf[pntr]);

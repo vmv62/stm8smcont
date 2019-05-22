@@ -1,4 +1,5 @@
 #include "modbus.h"
+#include "usart.h"
 
 
 int mb_parse_pdu(unsigned char *buff, int len){
@@ -11,28 +12,35 @@ int mb_parse_pdu(unsigned char *buff, int len){
     //Подсчет контрольной суммы в принятом пду и сравнение с принятой
     CRC_calc = CRC16(buf_ptr, len - 2);
     CRC_rec = (buff[len - 1] << 8) + buff[len - 2];
+    
     //Если совпадает, парсим пду в соответствующей функции.
     if(CRC_calc == CRC_rec){
       switch(buff[1]){
       case READ_INPUT_REGISTERS: break;
-      default:  error_handler(MODBUS_EXCEPTION_ILLEGAL_FUNCTION);
+      default:  error_handler(buff, MODBUS_EXCEPTION_ILLEGAL_FUNCTION);
                 return MODBUS_EXCEPTION_ILLEGAL_FUNCTION;
       }
     }
     else{ //Если контрольные суммы не совпадают ошибка и выход с ошибкой
-      error_handler(MODBUS_BAD_CRC);
+      error_handler(buff, MODBUS_BAD_CRC);
       return MODBUS_BAD_CRC;
     }
   }
   else{
-     error_handler(MODBUS_ILLEGAL_SLAVE_ADDR); 
+     error_handler(buff, MODBUS_ILLEGAL_SLAVE_ADDR); 
      return  MODBUS_ILLEGAL_SLAVE_ADDR;
   }
   return 0;
 }
 
-void error_handler(char err_numb){
-
+void error_handler(unsigned char *buff, char err_numb){
+  unsigned int crc;
+  buff[1] = 0x8F;
+  buff[2] = err_numb;
+  crc = CRC16(buff, 3);
+  buff[3] |= (crc >> 8);
+  buff[4] |= crc;
+  usart_tx_buff(buff, 5);
 }
 
 //Функция подсчета контрольной суммы работает.

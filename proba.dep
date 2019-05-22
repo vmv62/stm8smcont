@@ -237,11 +237,11 @@
       <inputs>
         <tool>
           <name>BICOMP</name>
-          <file> 33</file>
+          <file> 33 6</file>
         </tool>
         <tool>
           <name>ICCSTM8</name>
-          <file> 33</file>
+          <file> 33 6</file>
         </tool>
       </inputs>
     </file>

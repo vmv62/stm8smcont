@@ -29,7 +29,5 @@ int main( void )
         buf_ptr = 0;
     }
     adcv = ADC_read();
- //   simb = usart_rx();
-//    usart_tx_buff("Hello!\r\n", 8);
   }
 }
