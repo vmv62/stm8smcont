@@ -1596,6 +1596,12 @@
     <name>$PROJ_DIR$\main.c</name>
   </file>
   <file>
+    <name>$PROJ_DIR$\modbus.c</name>
+  </file>
+  <file>
+    <name>$PROJ_DIR$\modbus.h</name>
+  </file>
+  <file>
     <name>$PROJ_DIR$\usart.c</name>
   </file>
   <file>

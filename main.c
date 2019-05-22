@@ -3,14 +3,17 @@
 #include "usart.h"
 #include "adc.h"
 #include "clk.h"
+#include "modbus.h"
 
 
 unsigned int adcv;
+extern unsigned int msg_recieved;
+extern unsigned char buf_ptr;
+extern unsigned char bufr[256];
 
 
 int main( void )
 {
-  int simb;
   asm("RIM");	//¬ключение прерываний
   ports_conf();
   adc_conf();
@@ -20,6 +23,11 @@ int main( void )
   }
   
   while(1){
+    if(msg_recieved){
+      mb_parse_pdu(bufr, buf_ptr);
+        msg_recieved = 0;
+        buf_ptr = 0;
+    }
     adcv = ADC_read();
  //   simb = usart_rx();
 //    usart_tx_buff("Hello!\r\n", 8);

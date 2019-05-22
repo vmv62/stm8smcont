@@ -2,10 +2,6 @@
 #define FALSE 0
 #define FLASH_START 0x08000000
 
-//Макросы
-#define reg_swap(a)		((a >> 8) | (a << 8))
-
-#define MAX_PDU_SIZE	254
 #define MDB_ADDR	25
 #define PDU_HEAD_SIZE	3
 #define COIL_REG_COUNT	16
@@ -47,7 +43,8 @@ enum {
     MODBUS_EXCEPTION_GATEWAY_PATH,
     MODBUS_EXCEPTION_GATEWAY_TARGET,
     MODBUS_EXCEPTION_MAX,
-    MODBUS_ILLEGAL_SLAVE_ADDR
+    MODBUS_ILLEGAL_SLAVE_ADDR,
+    MODBUS_BAD_CRC
 };
 
 //Названия регистров хранения данных.
@@ -57,17 +54,17 @@ enum{
 
 };
 
-uint8_t BUFFER[256];
+//uint8_t BUFFER[256];
 
 //Наполнение таблицы. часть касаемая содержания регистров хранения.
 
 //Таблица регистров контроллера
-typedef struct{
-	uint16_t COILS;						//выхода - читаем командой 01, пишем командой 05
-	uint16_t INPUTS;					//дискретные входа, читаем командой 02
-	uint16_t HLD_REG[HLD_REG_COUNT];			//регистры хранения, читаем через комманду 04, пишем командой 06
-	uint32_t INP_REG[INP_REG_COUNT]; //только читаем через команду 04
-}RegsTable_TypeDef;
+//typedef struct{
+//	uint16_t COILS;						//выхода - читаем командой 01, пишем командой 05
+//	uint16_t INPUTS;					//дискретные входа, читаем командой 02
+//	uint16_t HLD_REG[HLD_REG_COUNT];			//регистры хранения, читаем через комманду 04, пишем командой 06
+//	uint32_t INP_REG[INP_REG_COUNT]; //только читаем через команду 04
+//}RegsTable_TypeDef;
 
 //Структура сообщения протокола.
 typedef struct{
@@ -89,11 +86,8 @@ typedef struct{
 	uint16_t crc;
 }PDU_Query6_TypeDef;
 
-uint16_t pase_pdu(uint8_t *buffer, RegsTable_TypeDef *REGS);
-uint16_t regs_filling(RegsTable_TypeDef *REGS);
-uint16_t read_coils(uint8_t *buffer, RegsTable_TypeDef *REGS);
-uint16_t read_input_registers(uint8_t *buffer, RegsTable_TypeDef *REGS);		//чтение
-uint16_t read_holding_registers(uint8_t *buffer, RegsTable_TypeDef *REGS);		// чтение коммандой 03
-uint16_t write_holding_reg(uint8_t *buffer, RegsTable_TypeDef *REGS);	// функция 06
-uint8_t error_handler(uint8_t error, uint8_t *buffer);
-uint16_t crc16(uint8_t *adr_buffer, uint32_t byte_cnt);
+int mb_parse_pdu(unsigned char *buff, int len);
+//int crc16(unsigned char* data_p, unsigned char length);
+unsigned int CRC16(unsigned char *buf, int len);
+void error_handler(char err_numb);
+
