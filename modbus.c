@@ -1,8 +1,7 @@
-#include "stm32f0xx.h"
 #include "modbus.h"
-#include "hw_init.h"
 
-//Функция заполнения таблицы
+
+//Функция парсинга буфера с ПДУ.
 uint16_t pase_pdu(uint8_t *buffer, RegsTable_TypeDef *REGS){
 	PDU_QueryHead_TypeDef *PDU = ((PDU_QueryHead_TypeDef *)buffer);
 	uint8_t err_holder;
