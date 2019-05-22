@@ -1,6 +1,8 @@
 #define XTALL 16000000UL
 
-
+struct{
+  char rxpend;
+}usart_hndl_t;
 
 void usart_init(int baud);
 void usart_tx(char byte);
