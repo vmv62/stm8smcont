@@ -47,6 +47,13 @@ __interrupt void TX_interrupt(void)
 #pragma vector=UART1_R_RXNE_vector
 __interrupt void RX_interrupt(void)
 {
-  bufr[buf_ptr] = UART1_DR; //Флаг прерывания очищается при чтении регистра.
-  buf_ptr++;
+  //Если прерывание пришло по приему нового символа.
+  if(UART1_SR & UART!_SR.bit.RXNE){
+    bufr[buf_ptr] = UART1_DR; //Флаг прерывания очищается при чтении регистра.
+    buf_ptr++;
+  }
+  //Если прерывание пришло по простою линии.
+  if(UART1_SR & UART!_SR.bit.IDLE){
+    UART1_SR &= ~(1 << 4); //сбрасываем флаг прерывания
+  }
 }
