@@ -1590,9 +1590,6 @@
     <name>$EW_DIR$\stm8\inc\iostm8s003f3.h</name>
   </file>
   <file>
-    <name>$PROJ_DIR$\it.c</name>
-  </file>
-  <file>
     <name>$PROJ_DIR$\main.c</name>
   </file>
   <file>

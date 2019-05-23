@@ -1,7 +1,9 @@
 #define TRUE 1
 #define FALSE 0
-
 #define MDB_ADDR	25
+
+//Macro
+#define cti(a, b)      (a[b] << 8) | a[b + 1]
 
 typedef unsigned int uint32_t;
 typedef unsigned short uint16_t;

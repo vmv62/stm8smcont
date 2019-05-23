@@ -16,7 +16,8 @@ int mb_parse_pdu(unsigned char *buff, int len){
     //Если совпадает, парсим пду в соответствующей функции.
     if(CRC_calc == CRC_rec){
       switch(buff[1]){
-        case READ_INPUT_REGISTERS: break;
+        case READ_INPUT_REGISTERS:    read_input_registers(buff);  
+                                      break;
         default:  error_handler(buff, MODBUS_EXCEPTION_ILLEGAL_FUNCTION);
                   return MODBUS_EXCEPTION_ILLEGAL_FUNCTION;
       }
@@ -34,12 +35,28 @@ int mb_parse_pdu(unsigned char *buff, int len){
 }
 
 int read_input_registers(unsigned char *buff){
-  unsigned int *reg_addr = buff + 2;
-  unsigned int *reg_cnt = buff + 4;
+ // unsigned int *reg_addr = (unsigned int *)&buff[2];
+  unsigned int crc;
+//  unsigned int reg_addr = cti(buff, 2);
+//  unsigned int reg_cnt = cti(buff, 4);
   
-  for(unsigned int i = 0; i < *reg_cnt, i++){
-       
-  }
+//  for(unsigned int i = 0; i < reg_cnt; i++){
+//       buff[i + 2] = 0x00;
+//       buff[i + 3] = 0x45;
+//  }
+  buff[2] = 0x02;
+  buff[3] = 0x00;
+  buff[4] = 0x45;
+  crc = CRC16(buff, 5);
+
+  buff[5] = crc >> 8;
+  buff[6] = crc;
+/*  
+  buff[5] |= 0x58;
+  buff[6] |= 0xC1;
+ */ 
+  usart_tx_buff(buff, 7);
+  return 0;
 }
 
 void error_handler(unsigned char *buff, char err_numb){
