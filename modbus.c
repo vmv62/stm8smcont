@@ -34,7 +34,12 @@ int mb_parse_pdu(unsigned char *buff, int len){
 }
 
 int read_input_registers(unsigned char *buff){
-
+  unsigned int *reg_addr = buff + 2;
+  unsigned int *reg_cnt = buff + 4;
+  
+  for(unsigned int i = 0; i < *reg_cnt, i++){
+       
+  }
 }
 
 void error_handler(unsigned char *buff, char err_numb){
