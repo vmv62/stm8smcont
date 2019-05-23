@@ -16,9 +16,9 @@ int mb_parse_pdu(unsigned char *buff, int len){
     //Если совпадает, парсим пду в соответствующей функции.
     if(CRC_calc == CRC_rec){
       switch(buff[1]){
-      case READ_INPUT_REGISTERS: break;
-      default:  error_handler(buff, MODBUS_EXCEPTION_ILLEGAL_FUNCTION);
-                return MODBUS_EXCEPTION_ILLEGAL_FUNCTION;
+        case READ_INPUT_REGISTERS: break;
+        default:  error_handler(buff, MODBUS_EXCEPTION_ILLEGAL_FUNCTION);
+                  return MODBUS_EXCEPTION_ILLEGAL_FUNCTION;
       }
     }
     else{ //Если контрольные суммы не совпадают ошибка и выход с ошибкой
@@ -31,6 +31,10 @@ int mb_parse_pdu(unsigned char *buff, int len){
      return  MODBUS_ILLEGAL_SLAVE_ADDR;
   }
   return 0;
+}
+
+int read_input_registers(unsigned char *buff){
+
 }
 
 void error_handler(unsigned char *buff, char err_numb){
