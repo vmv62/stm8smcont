@@ -56,6 +56,8 @@ enum{
 
 
 int mb_parse_pdu(unsigned char *buff, int len);
+int read_holding_registers(unsigned char *buff);
+int read_input_registers(unsigned char *buff);
 unsigned int CRC16(unsigned char *buf, int len);
 void error_handler(unsigned char *buff, char err_numb);
 
