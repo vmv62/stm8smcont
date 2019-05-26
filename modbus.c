@@ -37,32 +37,39 @@ int mb_parse_pdu(unsigned char *buff, int len){
   return 0;
 }
 
+
+//Чтение входных регистров
 int read_input_registers(unsigned char *buff){
- // unsigned int *reg_addr = (unsigned int *)&buff[2];
   unsigned int crc;
   unsigned int reg_addr = cti(buff, 2);
   unsigned int reg_cnt = cti(buff, 4);
   
-  if((reg_cnt > IRCNT) || ((reg_cnt + reg_addr) > IRCNT)){
+  if(reg_cnt > IRCNT){
     error_handler(buff, MODBUS_EXCEPTION_ILLEGAL_DATA_ADDRESS);
     return 0;
   }
   
-//  for(unsigned int i = 0; i < reg_cnt; i++){
-//       buff[i + 2] = 0x00;
-//       buff[i + 3] = 0x45;
-//  }
+  if((reg_cnt + reg_addr) > IRCNT){
+    error_handler(buff, MODBUS_EXCEPTION_ILLEGAL_DATA_VALUE);
+    return 0;
+  }
+  
+  buff[2] = reg_cnt * 2;
+  
+  unsigned int n = 3;
+  for(unsigned int i = reg_addr; i < reg_cnt + reg_addr; i++){
+    buff[n] = (unsigned char)(regs.ireg[reg_addr + i] >> 8);
+    n++;
+    buff[n] = (unsigned char)(regs.ireg[reg_addr + i]);
+    n++;
+  }
 
-  buff[2] = 0x02;
-  buff[3] = (unsigned char)(regs.ireg[0] >> 8);
-  buff[4] = (unsigned char)(regs.ireg[0]);
+  crc = CRC16(buff, PDU_HEADER + buff[2]);
 
-  crc = CRC16(buff, 5);
-
-  buff[6] = (unsigned char)(crc >> 8);
-  buff[5] = (unsigned char)crc;
- 
-  usart_tx_buff(buff, 7);
+  buff[PDU_HEADER + buff[2]] = (unsigned char)crc;
+  buff[PDU_HEADER + buff[2] + 1] = (unsigned char)(crc >> 8);
+  
+  usart_tx_buff(buff, buff[2] + 5);
   return 0;
 }
 
