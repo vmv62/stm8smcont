@@ -29,10 +29,11 @@ int main( void )
         buf_ptr = 0;
     }
     regs.ireg[0] = ADC_read();
-    regs.ireg[1] = 0x1000;
-    regs.ireg[2] = 0x500;
-    regs.ireg[3] = 0x300;
-    regs.ireg[4] = 0x200;
-    regs.ireg[5] = 0x100;
+    regs.ireg[1] = 1000;
+    regs.ireg[2] = 500;
+    regs.ireg[3] = 300;
+    regs.ireg[4] = 200;
+    regs.ireg[5] = 100;
+    
   }
 }

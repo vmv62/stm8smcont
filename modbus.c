@@ -19,7 +19,7 @@ int mb_parse_pdu(unsigned char *buff, int len){
       switch(buff[1]){
         case READ_INPUT_REGISTERS:    read_input_registers(buff);  
                                       break;
-        case READ_COIL_STATUS:        read_input_registers(buff);  
+        case READ_COIL_STATUS:        read_coil(buff);  
                                       break;
         default:  error_handler(buff, MODBUS_EXCEPTION_ILLEGAL_FUNCTION);
                   return MODBUS_EXCEPTION_ILLEGAL_FUNCTION;
@@ -37,6 +37,25 @@ int mb_parse_pdu(unsigned char *buff, int len){
   return 0;
 }
 
+//Чтение входов, выходов
+int read_coil(unsigned char *buff){
+  unsigned int crc;
+  unsigned char *reg_addr = (unsigned char *)(cti(buff, 2));
+  unsigned int reg_cnt = cti(buff, 4);
+  
+  buff[2] = reg_cnt * 2;
+  buff[3] = ((unsigned char)(*reg_addr >> 8));
+  buff[4] = ((unsigned char)(*reg_addr));
+  
+  crc = CRC16(buff, PDU_HEADER + buff[2]);
+  
+  buff[PDU_HEADER + buff[2]] = (unsigned char)crc;
+  buff[PDU_HEADER + buff[2] + 1] = (unsigned char)(crc >> 8);
+  
+  usart_tx_buff(buff, buff[2] + PDU_HEADER + 2);
+  
+  return 0; 
+}
 
 //Чтение входных регистров
 int read_input_registers(unsigned char *buff){
@@ -69,7 +88,7 @@ int read_input_registers(unsigned char *buff){
   buff[PDU_HEADER + buff[2]] = (unsigned char)crc;
   buff[PDU_HEADER + buff[2] + 1] = (unsigned char)(crc >> 8);
   
-  usart_tx_buff(buff, buff[2] + 5);
+  usart_tx_buff(buff, buff[2] + PDU_HEADER + 2);
   return 0;
 }
 
