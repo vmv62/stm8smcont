@@ -1,5 +1,5 @@
 [DebugChecksum]
-Checksum=-1206857090
+Checksum=1530556445
 [Stack]
 FillEnabled=0
 OverflowWarningsEnabled=1
@@ -49,6 +49,8 @@ ActionState=1
 [Trace1]
 Enabled=0
 ShowSource=1
+[watch_formats]
+Fmt0={W}0:crc	4	0
 [DataSample]
 LogEnabled=0
 GraphEnabled=0

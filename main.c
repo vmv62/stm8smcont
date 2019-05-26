@@ -10,7 +10,7 @@ unsigned int adcv;
 extern unsigned int msg_recieved;
 extern unsigned char buf_ptr;
 extern unsigned char bufr[256];
-
+extern res_t regs;
 
 int main( void )
 {
@@ -28,6 +28,6 @@ int main( void )
         msg_recieved = 0;
         buf_ptr = 0;
     }
-    adcv = ADC_read();
+    regs.ireg[0] = ADC_read();
   }
 }

@@ -1,6 +1,8 @@
 #define TRUE 1
 #define FALSE 0
-#define MDB_ADDR	25
+#define MDB_ADDR	11
+#define IRCNT           10
+#define HRCNT           10
 
 //Macro
 #define cti(a, b)      (a[b] << 8) | a[b + 1]
@@ -38,6 +40,10 @@ enum {
 	MODBUS_BAD_CRC		//Ошибка контрольной суммы
 };
 
+typedef struct{
+  unsigned int ireg[10];
+  unsigned int hreg[10];
+}res_t;
 
 
 int mb_parse_pdu(unsigned char *buff, int len);

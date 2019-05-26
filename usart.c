@@ -3,6 +3,7 @@
 
 unsigned char bufr[256];
 char buf_ptr = 0;
+unsigned int tx_len = 0;
 unsigned int msg_recieved = 0;
 
 void usart_init(int baud){
@@ -17,7 +18,9 @@ void usart_init(int baud){
 void usart_tx(unsigned char byte){
   PD_ODR |= (1 << 4);
   //Если передача не завершена, то ждем
-  while(!(UART1_SR && UART1_SR_TXE));;
+  //while(!(UART1_SR && UART1_SR_TXE));;
+  while(!UART1_SR_bit.TC);;
+  UART1_SR_bit.TC = 0;
   UART1_DR = byte; //Помещаем байт для отправки в регистр УАРТА
   PD_ODR &= ~(1 << 4);
 }
@@ -28,18 +31,28 @@ int usart_rx(void){
 }
 
 int usart_tx_buff(unsigned char *buf, int len){
-  int pntr = 0;
-  while(pntr < len){
-    usart_tx(buf[pntr]);
-    pntr++;
+  tx_len = len;
+  for(unsigned char i = 0; i < len + 1; i++){
+
+    usart_tx(*buf);
+    buf++;
   }
-  return pntr;
+//  UART1_CR2_bit.TIEN = 0;
+  return 0;
 }
 
 #pragma vector=UART1_T_TC_vector
 __interrupt void TX_interrupt(void)
 {
-  UART1_SR &= ~(1 << 6);
+ /* if(UART1_SR_bit.TXE){
+    UART1_DR = bufr[buf_ptr];
+    buf_ptr++;
+    if(buf_ptr >= tx_len){
+      UART1_CR2_bit.TIEN = 0;
+    }
+  }*/
+  UART1_SR_bit.TXE = 0;
+  UART1_SR_bit.TC = 0;
 }
 
 #pragma vector=UART1_R_RXNE_vector
