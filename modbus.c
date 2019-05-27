@@ -92,6 +92,7 @@ int read_input_registers(unsigned char *buff){
   return 0;
 }
 
+//Сообщение распознается, но пишет что неправильная контрольная сумма
 void error_handler(unsigned char *buff, char err_numb){
   unsigned int crc;
   buff[1] = 0x8F;
