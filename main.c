@@ -28,7 +28,7 @@ int main( void )
         msg_recieved = 0;
         buf_ptr = 0;
     }
-    regs.ireg[0] = ADC_read(0x08);
+    regs.ireg[0] = ADC_read(2);
     regs.ireg[1] = 1000;
     regs.ireg[2] = 500;
     regs.ireg[3] = 300;
