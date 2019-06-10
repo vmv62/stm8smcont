@@ -4,6 +4,8 @@
 #include "adc.h"
 #include "clk.h"
 #include "modbus.h"
+#include "timer.h"
+
 
 
 unsigned int adcv;
@@ -16,6 +18,7 @@ int main( void )
 {
   asm("RIM");	//¬ключение прерываний
   ports_conf();
+  timer_init();
  // adc_conf();
  
   if(swclksrc(HSE)){
