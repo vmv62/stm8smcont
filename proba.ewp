@@ -1599,6 +1599,12 @@
     <name>$PROJ_DIR$\modbus.h</name>
   </file>
   <file>
+    <name>$PROJ_DIR$\timer.c</name>
+  </file>
+  <file>
+    <name>$PROJ_DIR$\timer.h</name>
+  </file>
+  <file>
     <name>$PROJ_DIR$\usart.c</name>
   </file>
   <file>

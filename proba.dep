@@ -2,7 +2,7 @@
 
 <project>
   <fileVersion>2</fileVersion>
-  <fileChecksum>297103795</fileChecksum>
+  <fileChecksum>2630960809</fileChecksum>
   <configuration>
     <name>Debug</name>
     <outputs>
@@ -41,6 +41,10 @@
       <file>$PROJ_DIR$\ioport.h</file>
       <file>$PROJ_DIR$\usart.c</file>
       <file>$PROJ_DIR$\clk.c</file>
+      <file>$PROJ_DIR$\timer.c</file>
+      <file>$PROJ_DIR$\timer.h</file>
+      <file>$PROJ_DIR$\Debug\Obj\timer.o</file>
+      <file>$PROJ_DIR$\Debug\Obj\timer.pbi</file>
     </outputs>
     <file>
       <name>[ROOT_NODE]</name>
@@ -236,6 +240,29 @@
         </tool>
       </inputs>
     </file>
+    <file>
+      <name>$PROJ_DIR$\timer.c</name>
+      <outputs>
+        <tool>
+          <name>BICOMP</name>
+          <file> 38</file>
+        </tool>
+      </outputs>
+      <inputs>
+        <tool>
+          <name>BICOMP</name>
+          <file> 20 14 36</file>
+        </tool>
+        <tool>
+          <name>ICCSTM8</name>
+          <file> 20 14 36</file>
+        </tool>
+      </inputs>
+    </file>
+    <forcedrebuild>
+      <name>[MULTI_TOOL]</name>
+      <tool>ILINK</tool>
+    </forcedrebuild>
   </configuration>
   <configuration>
     <name>Release</name>

@@ -11,7 +11,14 @@ unsigned int ADC_read(int chanel){
   unsigned int val=0;
   //using ADC in single conversion mode
  // ADC_CSR_bit.CH |= chanel;
-  ADC_CSR |= (1 << chanel); // select channel
+  switch(chanel){
+  case 1: ADC_CSR |= (1 << 0) | (1 << 1); // select channel
+          ADC_CR1_bit.ADON = 0;
+          break;
+  case 2: ADC_CSR |= (1 << 2); // select channel
+          ADC_CR1_bit.ADON = 0;
+          break;
+    }
   ADC_CR2 |= (1<<3); // Right Aligned Data
   ADC_CR1 |= (1<<0); // ADC ON 
   ADC_CR1 |= (1<<0); // ADC Start Conversion
