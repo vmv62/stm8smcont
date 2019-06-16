@@ -4,6 +4,7 @@
 #define MDB_ADDR	11
 #define IRCNT           10
 #define HRCNT           10
+#define COCNT           4
 
 //Macro
 #define cti(a, b)      (a[b] << 8) | a[b + 1]
@@ -50,6 +51,7 @@ typedef struct{
 int mb_parse_pdu(unsigned char *buff, int len);
 int read_holding_registers(unsigned char *buff);
 int read_input_registers(unsigned char *buff);
+int set_output_register(unsigned char *buff);
 int read_coil(unsigned char *buff);
 unsigned int CRC16(unsigned char *buf, int len);
 void error_handler(unsigned char *buff, char err_numb);

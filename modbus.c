@@ -1,5 +1,7 @@
+#include <iostm8s003f3.h>
 #include "modbus.h"
 #include "usart.h"
+#include "ioport.h"
 
 res_t regs;
 
@@ -20,6 +22,8 @@ int mb_parse_pdu(unsigned char *buff, int len){
         case READ_INPUT_REGISTERS:    read_input_registers(buff);  
                                       break;
         case READ_COIL_STATUS:        read_coil(buff);  
+                                      break;
+        case FORCE_SINGLE_COIL:       set_output_register(buff);  
                                       break;
         default:  error_handler(buff, MODBUS_EXCEPTION_ILLEGAL_FUNCTION);
                   return MODBUS_EXCEPTION_ILLEGAL_FUNCTION;
@@ -53,6 +57,40 @@ int read_coil(unsigned char *buff){
   buff[PDU_HEADER + buff[2] + 1] = (unsigned char)(crc >> 8);
   
   usart_tx_buff(buff, buff[2] + PDU_HEADER + 2);
+  
+  return 0; 
+}
+
+//Установка выходов
+int set_output_register(unsigned char *buff){
+  unsigned int reg_addr = (unsigned int)(cti(buff, 2));
+  unsigned int value = cti(buff, 4);
+  
+   if(reg_addr > COCNT){
+    error_handler(buff, MODBUS_EXCEPTION_ILLEGAL_DATA_ADDRESS);
+    return 0;
+  }
+  
+  switch(reg_addr){
+    case 0: if(value){
+            OUT1 = 1;
+          }else{OUT1 = 0;}
+          break;
+    case 1: if(value){
+            OUT2 = 1;
+          }else{OUT2 = 0;}
+          break;
+    case 2: if(value){
+            OUT3 = 1;
+          }else{OUT3 = 0;}
+          break;
+    case 3: if(value){
+            OUT4 = 1;
+          }else{OUT4 = 0;}
+          break;
+  }
+  
+  usart_tx_buff(buff, 8);
   
   return 0; 
 }

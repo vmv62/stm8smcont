@@ -1,5 +1,5 @@
 [DebugChecksum]
-Checksum=1571316208
+Checksum=168358277
 [Stack]
 FillEnabled=0
 OverflowWarningsEnabled=1
@@ -57,8 +57,7 @@ GraphEnabled=0
 ShowTimeLog=1
 ShowTimeSum=1
 [Breakpoints]
-Bp0=_ "STD_CODE" "{$PROJ_DIR$\timer.c}.15.3" 1 0 0 0 "" 0 ""
-Count=1
+Count=0
 [Log file]
 LoggingEnabled=_ 0
 LogFile=_ ""
