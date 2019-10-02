@@ -19,11 +19,11 @@ int mb_parse_pdu(unsigned char *buff, int len){
     //Если совпадает, парсим пду в соответствующей функции.
     if(CRC_calc == CRC_rec){
       switch(buff[1]){
-        case READ_INPUT_REGISTERS:    read_input_registers(buff);  
+      case READ_INPUT_REGISTERS:    read_input_registers(buff);  //Команда4
                                       break;
-        case READ_COIL_STATUS:        read_coil(buff);  
+        case READ_COIL_STATUS:        read_coil(buff);          //Команда 1
                                       break;
-        case FORCE_SINGLE_COIL:       set_output_register(buff);  
+        case FORCE_SINGLE_COIL:       set_output_register(buff);    //Команда 5
                                       break;
         default:  error_handler(buff, MODBUS_EXCEPTION_ILLEGAL_FUNCTION);
                   return MODBUS_EXCEPTION_ILLEGAL_FUNCTION;

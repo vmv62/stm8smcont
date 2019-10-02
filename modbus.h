@@ -1,7 +1,10 @@
 #define TRUE 1
 #define FALSE 0
 #define PDU_HEADER      3
+
+//Адрес устройства в сети Модбас
 #define MDB_ADDR	11
+
 #define IRCNT           10
 #define HRCNT           10
 #define COCNT           4

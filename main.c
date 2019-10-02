@@ -4,7 +4,7 @@
 #include "adc.h"
 #include "clk.h"
 #include "modbus.h"
-//#include "timer.h"
+#include "timer.h"
 
 
 void hardware_init(void);
@@ -18,10 +18,7 @@ extern res_t regs;
 int main( void )
 {
   hardware_init();
-//  PC_ODR |= (1 << 7);
-//  PC_ODR |= (1 << 6);
-//  PC_ODR |= (1 << 5);
-//  PC_ODR |= (1 << 4);
+  
   while(1){
     if(msg_recieved){
       mb_parse_pdu(bufr, buf_ptr);
@@ -33,8 +30,7 @@ int main( void )
     regs.ireg[2] = ADC_read(3);
     regs.ireg[3] = TMR2;
     regs.ireg[4] = 200;
-    regs.ireg[5] = 100;
-    
+    regs.ireg[5] = 100;  
   }
 }
 

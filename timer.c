@@ -1,5 +1,9 @@
 #include <iostm8s003f3.h>
-#include "timer.h"
+//#nclude "timer.h"
+
+unsigned int TMR0;
+unsigned int TMR1;
+unsigned int TMR2;
 
 //Настройка таймера
 void timer_init(void){
